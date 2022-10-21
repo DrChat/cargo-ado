@@ -16,4 +16,4 @@ clap = { version = "4.0.18", features = ["cargo"] }
 
 [package.metadata.binstall]
 pkg-url = "{ repo }/releases/download/v{ version }/{ name }-{ target }{ archive-suffix }"
-bin-dir = "release/{ bin }{ binary-ext }"
+bin-dir = "{ bin }{ binary-ext }"

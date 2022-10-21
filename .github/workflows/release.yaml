@@ -1,6 +1,8 @@
-name: Build
+name: Publish Release Binaries
 
-on: [push, pull_request]
+on:
+  release:
+    types: [created]
 
 env:
   CARGO_TERM_COLOR: always
@@ -34,22 +36,9 @@ jobs:
         target: ${{ matrix.target }}
         override: true
 
-    - name: test
-      uses: actions-rs/cargo@v1
+    - uses: taiki-e/upload-rust-binary-action@v1
       with:
-        command: test
-        args: --release
-
-    - name: build
-      uses: actions-rs/cargo@v1
-      with:
-        command: build
-        args: --target=${{ matrix.target }} --release
-
-    - name: upload artifacts
-      uses: actions/upload-artifact@v2.2.4
-      with:
-        # Artifact name
-        name: cargo-ado-${{ matrix.target }}
-        # A file, directory or wildcard pattern that describes what to upload
-        path: target/${{ matrix.target }}
+        bin: cargo-ado
+        tar: unix
+        zip: windows
+        token: ${{ secrets.GITHUB_TOKEN }}
