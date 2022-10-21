@@ -83,5 +83,11 @@ fn main() -> anyhow::Result<()> {
         }
     }
 
+    // Forward the result code from cargo.
+    let status = command.wait().context("failed to wait for cargo")?;
+    if let Some(code) = status.code() {
+        std::process::exit(code);
+    }
+
     Ok(())
 }
