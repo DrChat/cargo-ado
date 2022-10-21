@@ -1,5 +1,6 @@
 [package]
 name = "cargo-ado"
+description = "Azure DevOps wrapper for Cargo"
 edition = "2021"
 license = "MIT"
 homepage = "https://github.com/DrChat/cargo-ado"
