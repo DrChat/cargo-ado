@@ -13,3 +13,7 @@ authors = ["Justin Moore <jusmoore@microsoft.com>"]
 anyhow = "1.0.66"
 cargo_metadata = "0.15.0"
 clap = { version = "4.0.18", features = ["cargo"] }
+
+[package.metadata.binstall]
+pkg-url = "{ repo }/releases/download/v{ version }/{ name }-{ target }{ archive-suffix }"
+bin-dir = "release/{ bin }{ binary-ext }"
