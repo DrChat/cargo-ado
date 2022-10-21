@@ -38,7 +38,7 @@ fn main() -> anyhow::Result<()> {
         match message.context("failed to parse cargo diagnostic message")? {
             Message::CompilerMessage(msg) => {
                 let code = match msg.message.code {
-                    Some(code) => code,
+                    Some(ref code) => code,
                     // Summary error messages are emitted without an associated code.
                     None => continue,
                 };
@@ -74,6 +74,10 @@ fn main() -> anyhow::Result<()> {
                     code.code,
                     msg.message.message
                 );
+
+                if let Some(rendered) = msg.message.rendered {
+                    println!("{}", rendered);
+                }
             }
             _ => {}
         }
